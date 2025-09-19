@@ -1,0 +1,80 @@
+{
+  "info": {
+    "name": "URL Shortener Backend",
+    "_postman_id": "12345678-aaaa-bbbb-cccc-1234567890ab",
+    "description": "Postman collection for testing URL Shortener Backend APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Lucy\",\n  \"lastName\": \"Dev\",\n  \"email\": \"lucy@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","auth","register"] }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"lucy@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","auth","login"] }
+      }
+    },
+    {
+      "name": "Shorten URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"originalUrl\": \"https://www.google.com\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/url/shorten", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","url","shorten"] }
+      }
+    },
+    {
+      "name": "Get All URLs",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/url", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","url"] }
+      }
+    },
+    {
+      "name": "Redirect URL",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/url/{{shortId}}", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","url","{{shortId}}"] }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "shortId",
+      "value": "abc12345"
+    }
+  ]
+}
